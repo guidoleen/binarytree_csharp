@@ -26,7 +26,10 @@ namespace NodeBinaryTree
 
 			Console.Write (btree.ToString ());
 			Console.WriteLine ();
-			btree.Remove (77);
+			btree.Remove (7);
+
+			Console.WriteLine ();
+			Console.WriteLine (btree.ToString ());
 		}
 
 		private static void BinaryTreeOnString()

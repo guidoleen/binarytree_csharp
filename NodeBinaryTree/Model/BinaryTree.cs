@@ -58,9 +58,35 @@ namespace NodeBinaryTree
 			if (found == null)
 				return;
 
-			// TODO
-			Console.Write(found.NodeObject.ToString());
+			// 1) If Found has no children
+			if (found.left == null && found.right == null) {
+				if(parent.left == found)
+					parent.left = null;
+				else
+					parent.right = null;
 
+				return; // where done
+			}
+
+			// 2) If Found has one child
+			if (found.left == null && found.right != null){
+				if (parent.left == found)
+					parent.left = found.right;
+				else
+					parent.right = found.right;
+				return; // where done
+			}
+			if(found.left != null && found.right == null) {
+				if (parent.left == found)
+					parent.left = found.left;
+				else
+					parent.right = found.left;
+				return; // where done
+			}
+
+			// TODO
+			// 3) If Found has two children
+			if(found.left != null && found.right != null){}
 		}
 
 		// Node Comparer CompareTo Method
