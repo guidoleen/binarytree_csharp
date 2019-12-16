@@ -60,6 +60,8 @@ namespace NodeBinaryTree
 
 			// 1) If Found has no children
 			if (found.left == null && found.right == null) {
+
+				Console.Write (parent.NodeObject.ToString ());
 				if(parent.left == found)
 					parent.left = null;
 				else
@@ -86,7 +88,36 @@ namespace NodeBinaryTree
 
 			// TODO
 			// 3) If Found has two children
-			if(found.left != null && found.right != null){}
+			if(found.left != null && found.right != null){
+
+				// Intit vars
+				Node<T> left = found;
+				Node<T> parentLeft;
+
+				// 1) Go right once 
+				parentLeft = left;
+				left = found.right; // Set to right
+
+				// 2) Go all the way left till null >> last node
+				while (left != null) {
+					parentLeft = left;
+					left = left.left;
+				}
+
+				// 3) Swapping 
+				// First check if found is root so there's no parent
+				if (found != _binaryTree) {
+					// Replace parent.left with left
+					if(left.right != null)
+						parentLeft.left = left.right;
+					else
+						parentLeft.left = null;
+				}
+
+				// Swap it
+				left.right = found.right;
+				left.left = found.left;
+			}
 		}
 
 		// Node Comparer CompareTo Method
@@ -99,20 +130,24 @@ namespace NodeBinaryTree
 		private Node<T> FindNodeinTree(T obj, out Node<T> parent)
 		{
 			Node<T> current = this._binaryTree;
+			parent = current;
 
 			while (current != null) {
 				iComparer = this.NodeCompareOnValue (current, obj);
 
-				// First set parent
-				parent = current;
-
 				// Go Left
-				if (iComparer == 1)
+				if (iComparer == 1) {
+					// First set parent
+					parent = current;
 					current = current.left;
+				}
 
 				// Go Right
-				if (iComparer == -1)
+				if (iComparer == -1) {
+					// First set parent
+					parent = current;
 					current = current.right;
+				}
 
 				// Found
 				if (iComparer == 0) {
@@ -126,6 +161,8 @@ namespace NodeBinaryTree
 
 		public override string ToString ()
 		{
+			this._binaryTreeResult = null;
+
 			GetDataFromBinaryTree (this._binaryTree);
 			return string.Format ( this._binaryTreeResult );
 		}

@@ -24,11 +24,12 @@ namespace NodeBinaryTree
 				btree.Add (arrInt [i]);
 			}
 
-			Console.Write (btree.ToString ());
+			Console.WriteLine (btree.ToString ());
 			Console.WriteLine ();
-			btree.Remove (7);
+			// btree.Remove (2);
+			btree.Remove (5);
 
-			Console.WriteLine ();
+			Console.WriteLine ("\n");
 			Console.WriteLine (btree.ToString ());
 		}
 
