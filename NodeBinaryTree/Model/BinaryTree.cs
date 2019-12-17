@@ -91,32 +91,37 @@ namespace NodeBinaryTree
 			if(found.left != null && found.right != null){
 
 				// Intit vars
-				Node<T> left = found;
+				Node<T> leftFound = found;
 				Node<T> parentLeft;
 
 				// 1) Go right once 
-				parentLeft = left;
-				left = found.right; // Set to right
+				parentLeft = leftFound;
+				leftFound = found.right; // Set to right one time
 
 				// 2) Go all the way left till null >> last node
-				while (left != null) {
-					parentLeft = left;
-					left = left.left;
+				while (true) 
+				{
+					if (leftFound.left == null)
+						break;
+					else {
+						parentLeft = leftFound;
+						leftFound = leftFound.left;
+					}
 				}
 
 				// 3) Swapping 
 				// First check if found is root so there's no parent
 				if (found != _binaryTree) {
 					// Replace parent.left with left
-					if(left.right != null)
-						parentLeft.left = left.right;
+					if(leftFound.right != null)
+						parentLeft.left = leftFound.right;
 					else
 						parentLeft.left = null;
 				}
 
 				// Swap it
-				left.right = found.right;
-				left.left = found.left;
+				leftFound.right = found.right;
+				leftFound.left = found.left;
 			}
 		}
 
