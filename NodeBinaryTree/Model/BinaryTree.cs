@@ -86,7 +86,6 @@ namespace NodeBinaryTree
 				return; // where done
 			}
 
-			// TODO
 			// 3) If Found has two children
 			if(found.left != null && found.right != null){
 
@@ -95,23 +94,46 @@ namespace NodeBinaryTree
 				Node<T> parentLeft;
 
 				// 1) Go right once 
-				parentLeft = leftFound;
 				leftFound = found.right; // Set to right one time
 
-				// 2) Go all the way left till null >> last node
-				while (true) 
-				{
-					if (leftFound.left == null)
-						break;
-					else {
-						parentLeft = leftFound;
-						leftFound = leftFound.left;
-					}
-				}
+				// 2) Check if right has a left or not
+				if (leftFound.left == null) {
 
-				// 3) Swapping 
-				// First check if found is root so there's no parent
-				if (found != _binaryTree) {
+					// Check if root or not
+					if (found != _binaryTree) {
+						if (found.left != null)
+							leftFound.left = found.left;
+
+						if (parent.left == found)
+							parent.left = leftFound;
+						else
+							parent.right = leftFound;
+					} else {
+						// root node
+						leftFound.left = found.left;
+						_binaryTree = leftFound;
+
+						found = null;
+					}
+					
+					found = null;
+					leftFound = null;
+
+					return;
+				} else {
+					parentLeft = leftFound;
+
+				// 3) Go all the way left till null >> last node
+					while (true) 
+					{
+						if (leftFound.left == null)
+							break;
+						else {
+							parentLeft = leftFound;
+							leftFound = leftFound.left;
+						}
+					}
+
 					// Replace parent.left with left
 					if(leftFound.right != null)
 						parentLeft.left = leftFound.right;
@@ -119,9 +141,19 @@ namespace NodeBinaryTree
 						parentLeft.left = null;
 				}
 
-				// Swap it
-				leftFound.right = found.right;
-				leftFound.left = found.left;
+				// TODO
+				// 4) Swapping last part
+				Node<T> temp = leftFound;
+
+				// First check if found is root so there's no parent
+				if (found != _binaryTree) {
+					
+				}
+
+				// Swap it >> LeftFound with parent found >> When found is not root node
+				temp.left = found.left;
+				temp.right = found.right;
+				parent.right = temp;
 			}
 		}
 
