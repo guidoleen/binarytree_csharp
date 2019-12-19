@@ -120,7 +120,9 @@ namespace NodeBinaryTree
 					leftFound = null;
 
 					return;
-				} else {
+				} 
+				else 
+				{
 					parentLeft = leftFound;
 
 				// 3) Go all the way left till null >> last node
@@ -139,25 +141,25 @@ namespace NodeBinaryTree
 						parentLeft.left = leftFound.right;
 					else
 						parentLeft.left = null;
-				}
 
-				// TODO
 				// 4) Swapping last part
-				Node<T> temp = leftFound;
+					leftFound.left = found.left;
+					leftFound.right = found.right;
 
-				// First check if found is root so there's no parent
-				if (found != _binaryTree) {
-					
+					if (found != _binaryTree) {
+						if (parent.left == found)
+							parent.left = leftFound;
+						else
+							parent.right = leftFound;
+					} else {
+						_binaryTree = leftFound;
+						return;
+					}
 				}
-
-				// Swap it >> LeftFound with parent found >> When found is not root node
-				temp.left = found.left;
-				temp.right = found.right;
-				parent.right = temp;
 			}
 		}
 
-		// Node Comparer CompareTo Method
+		// Node Comparer CompareTo Method >> Can be changed
 		private int NodeCompareOnValue(Node<T> current, T obj)
 		{
 			return current.NodeObject.ToString ().CompareTo (obj.ToString ());
@@ -215,6 +217,21 @@ namespace NodeBinaryTree
 				_binaryTreeResult += node.NodeObject.ToString ();
 			GetDataFromBinaryTree(node.left);
 		}
+
+		// TODO
+		// Function for determine the middle value based on an array of objects
+//		private T DetermineTheRootNode(T[] arrayObjects)
+//		{
+//			int GRANULARITY = (arrayObjects.Length < 5) ? 3 : 5;
+//			// 5, 3, 8, 20, 1
+//			int arrLength = Math.Round(arrayObjects.Length/GRANULARITY);
+//
+//			T obj = arrayObjects [0];
+//
+//			for (int i = 0; i < 5; i++) {
+//				
+//			}
+//		}
 	}
 }
 
