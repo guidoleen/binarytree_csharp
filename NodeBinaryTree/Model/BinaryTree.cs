@@ -219,18 +219,37 @@ namespace NodeBinaryTree
 		}
 
 		// TODO
-		// Function for determine the middle value based on an array of objects
-//		private T DetermineTheRootNode(T[] arrayObjects)
+		// Insertion sort
+//		public void Sort(arr)
 //		{
-//			int GRANULARITY = (arrayObjects.Length < 5) ? 3 : 5;
-//			// 5, 3, 8, 20, 1
-//			int arrLength = Math.Round(arrayObjects.Length/GRANULARITY);
+//			var pivot = arr.length-1;
+//			var index = pivot;
+//			  largest;
 //
-//			T obj = arrayObjects [0];
+//			for(i = index; i >= 0; i--)
+//			{
+//				largest = arr[i];
+//				for(j = i; j >= 0; j--)
+//				{
+//					if(largest > arr[j])
+//					{
 //
-//			for (int i = 0; i < 5; i++) {
-//				
+//						largest = arr[j];
+//						pivot = j;
+//					}
+//				}
+//				// Swap
+//				arr[pivot] = arr[i];
+//				arr[i] = largest;
+//
+//				index = index-1;
 //			}
+//		}
+//
+//		// Get average number from sorted array
+//		function GetAverage(arr, pivot)
+//		{
+//			return arr[pivot];
 //		}
 	}
 }
