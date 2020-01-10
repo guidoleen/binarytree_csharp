@@ -218,39 +218,45 @@ namespace NodeBinaryTree
 			GetDataFromBinaryTree(node.left);
 		}
 
-		// TODO
-		// Insertion sort
-//		public void Sort(arr)
-//		{
-//			var pivot = arr.length-1;
-//			var index = pivot;
-//			  largest;
-//
-//			for(i = index; i >= 0; i--)
-//			{
-//				largest = arr[i];
-//				for(j = i; j >= 0; j--)
-//				{
-//					if(largest > arr[j])
-//					{
-//
-//						largest = arr[j];
-//						pivot = j;
-//					}
-//				}
-//				// Swap
-//				arr[pivot] = arr[i];
-//				arr[i] = largest;
-//
-//				index = index-1;
-//			}
-//		}
-//
-//		// Get average number from sorted array
-//		function GetAverage(arr, pivot)
-//		{
-//			return arr[pivot];
-//		}
+		// Insertion sort for determine the middle point in a part of the large array of data.
+		private void Sort(T[] arr)
+		{
+			var pivot = arr.Length-1;
+			var index = pivot;
+			T largest;
+
+			for(int i = index; i >= 0; i--)
+			{
+				largest = arr[i];
+				for(int j = i; j >= 0; j--)
+				{
+					if(largest.ToString().CompareTo(arr[j].ToString()) >= 0)
+					{
+						largest = arr[j];
+						pivot = j;
+					}
+				}
+				// Swap
+				arr[pivot] = arr[i];
+				arr[i] = largest;
+
+				index = index-1;
+			}
+		}
+
+		// Get average number from a given part of a large set of data to a sorted array.
+		// This to balance the binary tree.
+		public T GetAverageFromArray(T[] arr)
+		{
+			// First sort the array
+			this.Sort(arr);
+
+			// Determine the middlepoint in the array
+			double middle = arr.Length / 2;
+			int pivot = (int) Math.Round (middle)-1;
+
+			return arr[pivot];
+		}
 	}
 }
 

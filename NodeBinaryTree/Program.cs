@@ -8,8 +8,9 @@ namespace NodeBinaryTree
 		{
 			Console.WriteLine ("Binary tree");
 
-			BinaryTreeOnString ();
+			// BinaryTreeOnString ();
 			// BinaryTreeOnInt ();
+			GetAverage();
 		}
 
 		private static void BinaryTreeOnInt()
@@ -54,6 +55,17 @@ namespace NodeBinaryTree
 			Console.WriteLine ("\n");
 			Console.WriteLine (btree.ToString ());
 
+		}
+
+		private static void GetAverage()
+		{
+			BinaryTree<int> btree = new BinaryTree<int> ();
+
+			int[] arr = {
+				2, 6, 3, 5, 8, 9
+			};
+
+			Console.Write(btree.GetAverageFromArray (arr).ToString());
 		}
 	}
 }
